@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Selamat Ulang Tahun Sayang ❤️</title>
+  <style>
+    :root{
+      --bg1: #ff9a9e;
+      --bg2: #fad0c4;
+      --card: rgba(255,255,255,0.95);
+      --accent: #ff5e7e;
+      --muted: #6b6b6b;
+    }
+    html,body{height:100%;margin:0;font-family: "Helvetica Neue", Arial, sans-serif;background: linear-gradient(135deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased}
+    .wrap{
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:30px;
+      box-sizing:border-box;
+      position:relative;
+      overflow:hidden;
+    }
+    .card{
+      width:min(920px, 96%);
+      background:var(--card);
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.12);
+      padding:36px;
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:24px;
+      align-items:center;
+    }
+    @media(max-width:900px){
+      .card{grid-template-columns:1fr; padding:24px;}
+      .right-col{order:-1}
+    }
+    .greeting h1{margin:0;font-size: clamp(28px, 4vw, 44px);color:#333}
+    .sub{color:var(--muted); margin-top:8px; font-size:15px}
+    .message{margin-top:18px;font-size:16px;color:#444;line-height:1.5;}
+    .typed{display:inline-block;border-right:2px solid rgba(0,0,0,0.12);padding-right:6px;white-space:nowrap;overflow:hidden}
+    .controls{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{border:0;padding:10px 16px;border-radius:999px;cursor:pointer;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    .btn-pink{background:linear-gradient(90deg,var(--accent),#ff9bb3); color:white}
+    .right-col{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+    .photo-frame{width:300px;height:300px;border-radius:20px;overflow:hidden;background:#ffeef2;display:flex;align-items:center;justify-content:center;position:relative;box-shadow: 0 10px 30px rgba(0,0,0,0.08)}
+    .photo-frame img{width:100%; height:100%; object-fit:cover; display:block}
+    .heart{width:110px; height:110px; display:flex; align-items:center; justify-content:center;}
+    .heart svg{ width:70px; height:70px; transition:transform .25s ease; transform-origin:center; }
+    .pulse{ animation:pulse 1.5s infinite; }
+    @keyframes pulse{0%{ transform:scale(1)}50%{ transform:scale(1.12)}100%{ transform:scale(1)}}
+    .big-message{margin-top:12px;background:#fff;padding:14px;border-radius:12px;width:100%;text-align:center;font-weight:700;color:var(--accent);font-size:20px}
+    .footer{margin-top:12px;color:var(--muted); font-size:13px; text-align:center}
+    canvas.confetti{position:fixed; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index:50;}
+    .hint{ font-size:13px; color:var(--muted) }
+  </style>
+</head>
+<body>
+  <canvas class="confetti" id="confetti"></canvas>
+
+  <!-- Musik background -->
+  <audio id="bgMusic" loop>
+    <source src="kadek/musikUltah.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="left-col">
+        <div class="greeting">
+          <h1>Selamat Ulang Tahun, <span id="nama">Sayang</span>! 🎉</h1>
+          <div class="sub">Semoga hari ini penuh kejutan manis dan kebahagiaan.</div>
+        </div>
+        <div class="message">
+          <div><span class="typed" id="typed"></span></div>
+          <div class="hint">Tekan "Buka Pesan" untuk melihat pesan spesial dari aku.</div>
+        </div>
+        <div class="controls">
+          <button class="btn btn-pink" id="btnReveal">Buka Pesan ❤️</button>
+        </div>
+        <div id="revealArea" style="display:none">
+          <div class="big-message" id="specialMessage"></div>
+          <div class="footer">Dari: <strong>Nawairtas Satriawan</strong> · <span> 9 September 2025</span></div>
+        </div>
+      </div>
+      <div class="right-col">
+        <div class="photo-frame">
+          <img id="photo" src="kadek/01.jpg" alt="Foto kalian">
+        </div>
+        <div class="heart">
+          <svg viewBox="0 0 32 29.6" id="heartSvg" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.6 0c-2.9 0-5.4 1.7-6.6 4.2C15.9 1.7 13.4 0 10.5 0 4.7 0 .5 4.9 .5 10.7c0 8.1 13.4 15.6 15 16.6.8.5 1.9.5 2.7 0 1.6-1 15-8.6 15-16.6C31.5 4.9 27.3 0 23.6 0z" fill="#ff5e7e"/>
+          </svg>
+        </div>
+        <div class="hint">Klik "Buka Pesan" ✨</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // === Konfigurasi ===
+    const NAMA = "Kadek cintaku"; 
+    const PESAN_SPESIAL = `Selamat ulang tahun, ${NAMA}! 🎂 Semoga semua mimpimu cepat tercapai, kecuali mimpi punya pacar baru—karena itu cukup aku aja 😂❤️. Semoga hari-harimu selalu manis kayak senyummu, dan aku bakal tetap sayang kamu lebih dari boneka papa beruang dan melodi favoritmu! 😘💕`; 
+    document.getElementById('nama').textContent = NAMA;
+
+    // efek mengetik
+    function typeText(el, text, speed=35, cb){
+      el.textContent = "";
+      let i=0;
+      const intv = setInterval(()=>{
+        el.textContent += text.charAt(i);
+        i++;
+        if(i>=text.length){ clearInterval(intv); el.style.borderRight="0"; if(cb) cb(); }
+      }, speed);
+    }
+
+    // array foto dari folder kadek
+    const dummyPhotos=[
+      "kadek/01.jpg",
+      "kadek/02.jpg",
+      "kadek/03.jpg",
+      "kadek/04.jpg",
+      "kadek/05.jpg",
+      "kadek/06.jpg",
+    ];
+    const photo=document.getElementById('photo');
+    let slideIndex=0, slideInterval=null;
+
+    // musik & hati
+    const music = document.getElementById('bgMusic');
+    const heart = document.getElementById('heartSvg');
+
+    // confetti
+    const canvas=document.getElementById('confetti'),ctx=canvas.getContext('2d');
+    let W=canvas.width=window.innerWidth,H=canvas.height=window.innerHeight;
+    window.addEventListener('resize',()=>{W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;});
+    function random(min,max){return Math.random()*(max-min)+min;}
+    function Confetti(){this.x=random(0,W);this.y=random(-H,0);this.r=random(6,12);this.d=random(10,30);this.tilt=random(-10,10);this.tiltAngleInc=random(0.05,0.12);this.tiltAngle=0;this.color=["#ff5e7e","#ffd166","#8ad1c2","#ff9bb3","#c7a4ff"][Math.floor(random(0,5))];}
+    Confetti.prototype.draw=function(){ctx.beginPath();ctx.fillStyle=this.color;ctx.moveTo(this.x+this.tilt,this.y);ctx.lineTo(this.x+this.tilt+this.r,this.y+this.r/2);ctx.lineTo(this.x+this.tilt,this.y+this.r);ctx.lineTo(this.x+this.tilt-this.r,this.y+this.r/2);ctx.closePath();ctx.fill();}
+    let confetti=[];
+    function initConfetti(n=120){confetti=[];for(let i=0;i<n;i++)confetti.push(new Confetti());}
+    function updateConfetti(){ctx.clearRect(0,0,W,H);for(let i=0;i<confetti.length;i++){let p=confetti[i];p.tiltAngle+=p.tiltAngleInc;p.y+=(Math.cos(p.d)+3+p.r/2)*0.6;p.tilt=Math.sin(p.tiltAngle)*15;if(p.y>H+20){confetti[i]=new Confetti();confetti[i].y=-10;}p.draw();}requestAnimationFrame(updateConfetti);}
+
+    // tombol buka pesan
+    document.getElementById('btnReveal').addEventListener('click', ()=>{
+      const typedEl=document.getElementById('typed');
+      typeText(typedEl,"Membuka pesan spesial...",40,()=>{
+        setTimeout(()=>{
+          document.getElementById('revealArea').style.display="block";
+          typeText(document.getElementById('specialMessage'),PESAN_SPESIAL,28);
+          
+          // Jalankan musik + confetti + slideshow + hati berdenyut
+          initConfetti(140); updateConfetti();
+          slideIndex=0; photo.src=dummyPhotos[slideIndex];
+          slideInterval=setInterval(()=>{
+            slideIndex=(slideIndex+1)%dummyPhotos.length;
+            photo.src=dummyPhotos[slideIndex];
+          },3000);
+          music.play();
+          heart.classList.add("pulse");
+        },600);
+      });
+    });
+
+    // klik foto → ganti manual
+    photo.addEventListener('click',()=>{
+      const input=document.createElement('input');
+      input.type='file';input.accept='image/*';
+      input.onchange=()=>{if(input.files[0]){photo.src=URL.createObjectURL(input.files[0]);}};
+      input.click();
+    });
+  </script>
+</body>
+</html>
