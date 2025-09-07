@@ -4,44 +4,480 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Selamat Ulang Tahun Sayang ❤️</title>
-<link rel="stylesheet" href="style.css">
+<style>
+    /* CSS Code Below */
+    :root {
+        --bg1: #ff9a9e;
+        --bg2: #fad0c4;
+        --card: rgba(255, 255, 255, 0.95);
+        --accent: #ff5e7e;
+        --muted: #6b6b6b;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, var(--bg1), var(--bg2));
+        background-size: 300% 300%;
+        animation: gradientMove 10s ease infinite, twinkle 2.5s infinite alternate;
+    }
+
+    @keyframes gradientMove {
+        0% { background-position: 0% 50% }
+        50% { background-position: 100% 50% }
+        100% { background-position: 0% 50% }
+    }
+
+    @keyframes twinkle {
+        from { filter: brightness(0.9) }
+        to { filter: brightness(1.1) }
+    }
+
+    .wrap {
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card {
+        width: min(920px, 96%);
+        background: var(--card);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        padding: 36px;
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 24px;
+        align-items: center;
+    }
+
+    @media (max-width: 900px) {
+        .card {
+            grid-template-columns: 1fr;
+            padding: 24px;
+        }
+        .right-col {
+            order: -1;
+        }
+    }
+
+    .greeting h1 {
+        margin: 0;
+        font-size: clamp(28px, 4vw, 44px);
+        color: #333;
+    }
+
+    .sub {
+        color: var(--muted);
+        margin-top: 8px;
+        font-size: 15px;
+    }
+
+    .message {
+        margin-top: 18px;
+        font-size: 16px;
+        color: #444;
+        line-height: 1.5;
+    }
+
+    /* Efek Ketik */
+    .typed-text::after {
+        content: "|";
+        display: inline-block;
+        animation: blink-caret 0.75s step-end infinite;
+        font-weight: normal;
+    }
+
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: black; }
+    }
+
+    .controls {
+        margin-top: 20px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        border: 0;
+        padding: 10px 16px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 600;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-pink {
+        background: linear-gradient(90deg, var(--accent), #ff9bb3);
+        color: white;
+    }
+
+    .right-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .photo-frame {
+        width: 300px;
+        height: 300px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #ffeef2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.7s ease-in-out;
+    }
+    
+    .photo-frame img.slide-left {
+        transform: translateX(-100%);
+    }
+
+    .photo-frame img.slide-right {
+        transform: translateX(100%);
+    }
+
+    .made-text {
+        font-size: 28px;
+        font-weight: 800;
+        text-align: center;
+        background: linear-gradient(90deg, #ff5e7e, #ff9bb3, #c7a4ff, #ffd166);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientFlow 6s ease infinite, pulse 1.5s infinite;
+    }
+
+    @keyframes gradientFlow {
+        0% { background-position: 0% 50% }
+        50% { background-position: 100% 50% }
+        100% { background-position: 0% 50% }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1) }
+        50% { transform: scale(1.12) }
+        100% { transform: scale(1) }
+    }
+
+    .big-message {
+        margin-top: 12px;
+        background: #fff;
+        padding: 14px;
+        border-radius: 12px;
+        width: 100%;
+        text-align: center;
+        font-weight: 700;
+        color: var(--accent);
+        font-size: 20px;
+    }
+
+    .footer {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+    }
+
+    /* Overlay Countdown */
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        flex-direction: column;
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .overlay-img {
+        width: 180px;
+        margin-bottom: 20px;
+        animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px) }
+        50% { transform: translateY(-15px) }
+        100% { transform: translateY(0px) }
+    }
+
+    #overlayCountdown {
+        font-size: 48px;
+        font-weight: bold;
+        color: var(--accent);
+        margin-top: 10px;
+    }
+
+    canvas.confetti {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+    }
+
+    /* Initial Page Styles */
+    #initialPage {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 20px;
+        z-index: 998;
+        padding: 20px;
+        box-sizing: border-box;
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    #initialPage h2 {
+        color: #333;
+        font-size: clamp(24px, 5vw, 48px);
+    }
+    
+    .breathing-text {
+        animation: breathe 3s ease-in-out infinite;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    @keyframes breathe {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+    
+    .cake-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    
+    .cake-button:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 10px var(--accent));
+    }
+    
+    .cake-button:active {
+        animation: pop 0.2s ease-out;
+    }
+    
+    @keyframes pop {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.95); }
+        100% { transform: scale(1); }
+    }
+    
+    .cake-button img {
+        width: clamp(200px, 40vw, 350px);
+        height: auto;
+        border-radius: 50%;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        transition: transform 0.3s ease;
+    }
+    
+    .cake-button img {
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    /* --- Modal CSS --- */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background-color: white;
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        transform: translateY(-20px);
+        opacity: 0;
+        animation: modalFadeIn 0.5s forwards;
+    }
+
+    @keyframes modalFadeIn {
+        from { transform: translateY(-20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-content h3 {
+        margin: 0;
+        font-size: clamp(20px, 4vw, 32px);
+        color: var(--accent);
+    }
+
+    .modal-content p {
+        color: var(--muted);
+        margin-top: 15px;
+        font-size: 16px;
+    }
+
+    .modal-buttons {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn-modal {
+        border: 0;
+        padding: 12px 24px;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .btn-modal:hover {
+        transform: scale(1.05);
+    }
+
+    .btn-close {
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .btn-music {
+        background: var(--accent);
+        color: white;
+    }
+
+    /* Gift Modal Specific Styles */
+    #giftModal .modal-content {
+        padding: 30px;
+    }
+
+    #giftModal h3 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    #giftIcon {
+        width: clamp(150px, 30vw, 250px);
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+        animation: bounce 2s infinite ease-in-out;
+    }
+
+    #giftIcon:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 10px var(--accent));
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+</style>
 </head>
 <body>
 
 <canvas class="confetti" id="confetti"></canvas>
 
-<!-- Overlay Countdown -->
+<div id="giftModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h3>Silakan buka kadonya!</h3>
+        <img src="kadek/gift-icon.png" alt="Ikon Kado Ulang Tahun" id="giftIcon" />
+    </div>
+</div>
+
 <div id="overlay">
-  <img src="https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif" alt="Perjalanan Kado" class="overlay-img">
+  <img src="https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif" alt="Animasi kotak kado bergerak" class="overlay-img">
   <div>Pesan spesial akan segera tiba...</div>
   <div id="overlayCountdown"></div>
 </div>
 
-<!-- Main Content -->
-<div class="wrap" id="mainContent" style="display:none;">
+<div class="wrap" id="initialPage" style="display: none;">
+    <div>
+        <h2 class="breathing-text">Silakan tekan kue ulang tahun ini!</h2>
+        <button class="cake-button" id="btnCake">
+            <img src="kadek/kueUltah.jpg" alt="Gambar kue ulang tahun" />
+        </button>
+    </div>
+</div>
+
+<div class="wrap" id="mainContent" style="display: none;">
   <div class="card">
     <div class="left-col">
       <div class="greeting">
         <h1>Selamat Ulang Tahun, <span id="nama">Sayang</span>! 🎉</h1>
         <div class="sub">Semoga hari ini penuh kejutan manis dan kebahagiaan.</div>
-        <div class="countdown" id="countdown"></div>
       </div>
       <div class="message">
         <div><span class="typed" id="typed"></span></div>
         <div class="hint">Tunggu hingga waktunya untuk membuka pesan spesial ✨</div>
       </div>
       <div class="controls">
-        <button class="btn btn-pink" id="btnReveal" style="display:none;">Buka Pesan ❤️</button>
+        <button class="btn btn-pink" id="btnReveal" style="display: none;">Buka Pesan ❤️</button>
       </div>
-      <div id="revealArea" style="display:none">
-        <div class="big-message" id="specialMessage">🎁 Selamat ulang tahun, Kadek! Semoga hari ini penuh cinta dan kebahagiaan! ❤️</div>
+      <div id="revealArea" style="display: none;">
+        <div class="big-message">
+            <span id="specialMessage" class="typed-text"></span>
+        </div>
         <div class="footer">Dari: <strong>Nawairtas Satriawan</strong> · <span>9 September 2025</span></div>
       </div>
     </div>
 
     <div class="right-col">
       <div class="photo-frame">
-        <img id="photo" src="kadek/01.jpg" alt="Foto kalian">
+        <img id="photo" src="kadek/01.jpg" alt="Foto kenangan bersama">
       </div>
       <div class="made-text">S❤S</div>
       <div class="hint">Klik "Buka Pesan" ✨</div>
@@ -50,108 +486,179 @@
 </div>
 
 <script>
-  const NAMA = "Kadek"; 
-document.getElementById('nama').textContent = NAMA;
+    // JavaScript Code Below
+    const NAMA = "Kadek"; 
+    document.getElementById('nama').textContent = NAMA;
 
-const overlay = document.getElementById('overlay');
-const mainContent = document.getElementById('mainContent');
-const overlayCountdown = document.getElementById('overlayCountdown');
-const btnReveal = document.getElementById('btnReveal');
-const countdownEl = document.getElementById('countdown');
-const typedEl = document.getElementById('typed');
-const specialMessageEl = document.getElementById('specialMessage');
-const photo = document.getElementById('photo');
+    const overlay = document.getElementById('overlay');
+    const mainContent = document.getElementById('mainContent');
+    const initialPage = document.getElementById('initialPage');
+    const btnCake = document.getElementById('btnCake');
+    const overlayCountdown = document.getElementById('overlayCountdown');
+    const btnReveal = document.getElementById('btnReveal');
+    const specialMessageEl = document.getElementById('specialMessage');
+    const photo = document.getElementById('photo');
 
-// --- Hitungan mundur sesuai WIB (GMT+7) ---
-// WIB = UTC+7, jadi 12:00 WIB = 05:00 UTC
-const revealDate = new Date(Date.UTC(2025, 8, 9, 5, 0, 0));
+    // Modal elements
+    const giftModal = document.getElementById('giftModal');
+    const giftIcon = document.getElementById('giftIcon');
 
-function updateCountdown() {
-    const now = new Date();
-    const distance = revealDate - now;
 
-    if(distance <= 0) {
-        overlay.style.display = "none";
-        mainContent.style.display = "flex";
-        clearInterval(countdownInterval);
-        btnReveal.style.display = "inline-block";
-        return;
+    // --- Pengaturan Waktu Pengungkapan ---
+    // Untuk testing, kita atur 10 detik dari sekarang
+    const revealDate = new Date(Date.now() + 10 * 1000); 
+
+    let countdownInterval;
+
+    function updateCountdown() {
+        const now = new Date();
+        const distance = revealDate - now;
+
+        if (distance <= 0) {
+            overlay.style.display = "none";
+            initialPage.style.display = "flex";
+            clearInterval(countdownInterval);
+            return;
+        }
+
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        overlayCountdown.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }
 
-    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((distance / (1000 * 60)) % 60);
-    const seconds = Math.floor((distance / 1000) % 60);
+    countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-    // Update overlay countdown
-    overlayCountdown.textContent = `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+    // --- Tombol Kue Ulang Tahun ---
+    btnCake.addEventListener('click', () => {
+        initialPage.style.display = 'none';
+        mainContent.style.display = 'flex';
+        btnReveal.style.display = 'inline-block';
+    });
 
-    // Update main card countdown
-    countdownEl.textContent = `${String(hours).padStart(2,'0')} jam ${String(minutes).padStart(2,'0')} menit ${String(seconds).padStart(2,'0')}`;
-}
+    // --- Efek Ketik pada Pesan Spesial ---
+    const typedText = "🎁 Selamat ulang tahun, Kadek! Semoga di usiamu yang baru ini, level kesabaranmu naik drastis. Karena jujur saja, pacar kamu yang super gemas ini butuh banyak dimaklumi. Canda, Sayang! 😜";
+    const typeSpeed = 50; // Kecepatan ketik (ms per karakter)
+    const modalDelay = 5000; // Jeda 5 detik sebelum modal muncul (setelah ketik selesai)
+    let charIndex = 0;
 
-const countdownInterval = setInterval(updateCountdown, 1000);
-updateCountdown();
-
-// --- Tombol Buka Pesan ---
-btnReveal.addEventListener('click', ()=>{
-    specialMessageEl.parentElement.style.display = 'block';
-    btnReveal.style.display = 'none';
-    startConfetti();
-    startSlideshow();
-});
-
-// --- Slideshow Foto ---
-const dummyPhotos = ["kadek/01.jpg","kadek/02.jpg","kadek/03.jpg","kadek/04.jpg"];
-let slideIndex = 0;
-let slideInterval = null;
-function startSlideshow() {
-    slideInterval = setInterval(()=>{
-        slideIndex = (slideIndex +1) % dummyPhotos.length;
-        photo.src = dummyPhotos[slideIndex];
-    },3000);
-}
-
-// --- Confetti ---
-const canvas = document.getElementById('confetti');
-const ctx = canvas.getContext('2d');
-let W = canvas.width = window.innerWidth;
-let H = canvas.height = window.innerHeight;
-window.addEventListener('resize',()=>{ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; });
-
-function random(min,max){ return Math.random()*(max-min)+min; }
-function Confetti(){ 
-    this.x=random(0,W); this.y=random(-H,0); this.r=random(6,12); this.d=random(10,30); 
-    this.tilt=random(-10,10); this.tiltAngleInc=random(0.05,0.12); this.tiltAngle=0; 
-    this.color=["#ff5e7e","#ffd166","#8ad1c2","#ff9bb3","#c7a4ff"][Math.floor(random(0,5))]; 
-}
-Confetti.prototype.draw=function(){ 
-    ctx.beginPath(); ctx.fillStyle=this.color; 
-    ctx.moveTo(this.x+this.tilt,this.y); 
-    ctx.lineTo(this.x+this.tilt+this.r,this.y+this.r/2); 
-    ctx.lineTo(this.x+this.tilt,this.y+this.r); 
-    ctx.lineTo(this.x+this.tilt-this.r,this.y+this.r/2); 
-    ctx.closePath(); ctx.fill(); 
-}
-let confetti=[];
-function initConfetti(n=120){ confetti=[]; for(let i=0;i<n;i++) confetti.push(new Confetti()); }
-function updateConfetti(){ 
-    ctx.clearRect(0,0,W,H); 
-    for(let i=0;i<confetti.length;i++){ 
-        let p=confetti[i]; 
-        p.tiltAngle+=p.tiltAngleInc; 
-        p.y+=(Math.cos(p.d)+3+p.r/2)*0.6; 
-        p.tilt=Math.sin(p.tiltAngle)*15; 
-        if(p.y>H+20){ confetti[i]=new Confetti(); }
-        confetti[i].draw(); 
+    function typeWriter() {
+        if (charIndex < typedText.length) {
+            specialMessageEl.textContent += typedText.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeWriter, typeSpeed);
+        } else {
+            // Animasi ketik selesai, hapus cursor
+            specialMessageEl.classList.remove('typed-text');
+            // Beri jeda lalu tampilkan modal kado
+            setTimeout(() => {
+                giftModal.style.display = 'flex';
+            }, modalDelay); 
+        }
     }
-}
-let confettiAnim=null;
-function startConfetti(){
-    initConfetti();
-    if(confettiAnim) clearInterval(confettiAnim);
-    confettiAnim = setInterval(updateConfetti,16);
-}
 
+    // --- Tombol Buka Pesan ---
+    btnReveal.addEventListener('click', () => {
+        specialMessageEl.parentElement.parentElement.style.display = 'block';
+        btnReveal.style.display = 'none';
+        
+        typeWriter();
+        startConfetti();
+        startSlideshow();
+    });
+
+    // --- Tombol Klik Kado (di dalam giftModal) ---
+    giftIcon.addEventListener('click', () => {
+        giftModal.style.display = 'none';
+        // Di sini Anda bisa menambahkan fungsi lain setelah kado dibuka,
+        // misalnya memutar musik atau menampilkan pesan terakhir.
+        // Contoh:
+        // alert("Surprise! Kadomu adalah sebuah pelukan hangat! 🤗");
+        // playBirthdaySong();
+    });
+
+    // --- Slideshow Foto dengan Transisi Geser ---
+    const photos = ["kadek/01.jpg", "kadek/02.jpg", "kadek/03.jpg", "kadek/04.jpg"]; 
+    let slideIndex = 0;
+    let slideInterval = null;
+
+    function startSlideshow() {
+        slideInterval = setInterval(() => {
+            const direction = Math.random() > 0.5 ? 'slide-left' : 'slide-right';
+            
+            photo.classList.add(direction);
+
+            setTimeout(() => {
+                slideIndex = (slideIndex + 1) % photos.length;
+                photo.src = photos[slideIndex];
+                photo.classList.remove(direction);
+            }, 700);
+        }, 3000);
+    }
+
+    // --- Confetti Animation with requestAnimationFrame ---
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = window.innerWidth;
+    let H = canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    });
+
+    function random(min, max) { return Math.random() * (max - min) + min; }
+
+    function Confetti() {
+        this.x = random(0, W);
+        this.y = random(-H, 0);
+        this.r = random(6, 12);
+        this.d = random(10, 30);
+        this.tilt = random(-10, 10);
+        this.tiltAngleInc = random(0.05, 0.12);
+        this.tiltAngle = 0;
+        this.color = ["#ff5e7e", "#ffd166", "#8ad1c2", "#ff9bb3", "#c7a4ff"][Math.floor(random(0, 5))];
+    }
+
+    Confetti.prototype.draw = function() {
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.moveTo(this.x + this.tilt, this.y);
+        ctx.lineTo(this.x + this.tilt + this.r, this.y + this.r / 2);
+        ctx.lineTo(this.x + this.tilt, this.y + this.r);
+        ctx.lineTo(this.x + this.tilt - this.r, this.y + this.r / 2);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    let confetti = [];
+    function initConfetti(n = 120) {
+        confetti = [];
+        for (let i = 0; i < n; i++) confetti.push(new Confetti());
+    }
+
+    function updateConfetti() {
+        ctx.clearRect(0, 0, W, H);
+        for (let i = 0; i < confetti.length; i++) {
+            let p = confetti[i];
+            p.tiltAngle += p.tiltAngleInc;
+            p.y += (Math.cos(p.d) + 3 + p.r / 2) * 0.6;
+            p.tilt = Math.sin(p.tiltAngle) * 15;
+            if (p.y > H + 20) {
+                confetti[i] = new Confetti();
+            }
+            confetti[i].draw();
+        }
+        requestAnimationFrame(updateConfetti);
+    }
+
+    let confettiAnim = null;
+    function startConfetti() {
+        initConfetti();
+        if (confettiAnim) cancelAnimationFrame(confettiAnim);
+        confettiAnim = requestAnimationFrame(updateConfetti);
+    }
 </script>
 </body>
 </html>
