@@ -5,426 +5,450 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Selamat Ulang Tahun Sayang ❤️</title>
 <style>
-    /* CSS Code Below */
-    :root {
-        --bg1: #ff9a9e;
-        --bg2: #fad0c4;
-        --card: rgba(255, 255, 255, 0.95);
-        --accent: #ff5e7e;
-        --muted: #6b6b6b;
-    }
+/* CSS Code Below */
+:root {
+    --bg1: #ff9a9e;
+    --bg2: #fad0c4;
+    --card: rgba(255, 255, 255, 0.95);
+    --accent: #ff5e7e;
+    --muted: #6b6b6b;
+}
 
-    html, body {
-        height: 100%;
-        margin: 0;
-        font-family: "Helvetica Neue", Arial, sans-serif;
-    }
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
 
-    body {
-        background: linear-gradient(135deg, var(--bg1), var(--bg2));
-        background-size: 300% 300%;
-        animation: gradientMove 10s ease infinite, twinkle 2.5s infinite alternate;
-    }
+body {
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    background-size: 300% 300%;
+    animation: gradientMove 10s ease infinite, twinkle 2.5s infinite alternate;
+}
 
-    @keyframes gradientMove {
-        0% { background-position: 0% 50% }
-        50% { background-position: 100% 50% }
-        100% { background-position: 0% 50% }
-    }
+@keyframes gradientMove {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
 
-    @keyframes twinkle {
-        from { filter: brightness(0.9) }
-        to { filter: brightness(1.1) }
-    }
+@keyframes twinkle {
+    from { filter: brightness(0.9) }
+    to { filter: brightness(1.1) }
+}
 
-    .wrap {
-        min-height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 30px;
-        box-sizing: border-box;
-        position: relative;
-        overflow: hidden;
-    }
+.wrap {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
 
+.card {
+    width: min(920px, 96%);
+    background: var(--card);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    padding: 36px;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+    align-items: center;
+}
+
+@media (max-width: 900px) {
     .card {
-        width: min(920px, 96%);
-        background: var(--card);
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-        padding: 36px;
-        display: grid;
-        grid-template-columns: 1fr 360px;
-        gap: 24px;
-        align-items: center;
+        grid-template-columns: 1fr;
+        padding: 24px;
     }
-
-    @media (max-width: 900px) {
-        .card {
-            grid-template-columns: 1fr;
-            padding: 24px;
-        }
-        .right-col {
-            order: -1;
-        }
-    }
-
-    .greeting h1 {
-        margin: 0;
-        font-size: clamp(28px, 4vw, 44px);
-        color: #333;
-    }
-
-    .sub {
-        color: var(--muted);
-        margin-top: 8px;
-        font-size: 15px;
-    }
-
-    .message {
-        margin-top: 18px;
-        font-size: 16px;
-        color: #444;
-        line-height: 1.5;
-    }
-
-    /* Efek Ketik */
-    .typed-text::after {
-        content: "|";
-        display: inline-block;
-        animation: blink-caret 0.75s step-end infinite;
-        font-weight: normal;
-    }
-
-    @keyframes blink-caret {
-        from, to { border-color: transparent }
-        50% { border-color: black; }
-    }
-
-    .controls {
-        margin-top: 20px;
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
-
-    .btn {
-        border: 0;
-        padding: 10px 16px;
-        border-radius: 999px;
-        cursor: pointer;
-        font-weight: 600;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    }
-
-    .btn-pink {
-        background: linear-gradient(90deg, var(--accent), #ff9bb3);
-        color: white;
-    }
-
     .right-col {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 14px;
+        order: -1;
     }
+}
 
-    .photo-frame {
-        width: 300px;
-        height: 300px;
-        border-radius: 20px;
-        overflow: hidden;
-        background: #ffeef2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    }
+.greeting h1 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 44px);
+    color: #333;
+}
 
-    .photo-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.7s ease-in-out;
-    }
-    
-    .photo-frame img.slide-left {
-        transform: translateX(-100%);
-    }
+.sub {
+    color: var(--muted);
+    margin-top: 8px;
+    font-size: 15px;
+}
 
-    .photo-frame img.slide-right {
-        transform: translateX(100%);
-    }
+.message {
+    margin-top: 18px;
+    font-size: 16px;
+    color: #444;
+    line-height: 1.5;
+}
 
-    .made-text {
-        font-size: 28px;
-        font-weight: 800;
-        text-align: center;
-        background: linear-gradient(90deg, #ff5e7e, #ff9bb3, #c7a4ff, #ffd166);
-        background-size: 300% 300%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradientFlow 6s ease infinite, pulse 1.5s infinite;
-    }
+/* Efek Ketik */
+.typed-text::after {
+    content: "|";
+    display: inline-block;
+    animation: blink-caret 0.75s step-end infinite;
+    font-weight: normal;
+}
 
-    @keyframes gradientFlow {
-        0% { background-position: 0% 50% }
-        50% { background-position: 100% 50% }
-        100% { background-position: 0% 50% }
-    }
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: black; }
+}
 
-    @keyframes pulse {
-        0% { transform: scale(1) }
-        50% { transform: scale(1.12) }
-        100% { transform: scale(1) }
-    }
+.controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
 
-    .big-message {
-        margin-top: 12px;
-        background: #fff;
-        padding: 14px;
-        border-radius: 12px;
-        width: 100%;
-        text-align: center;
-        font-weight: 700;
-        color: var(--accent);
-        font-size: 20px;
-    }
+.btn {
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
 
-    .footer {
-        margin-top: 12px;
-        color: var(--muted);
-        font-size: 13px;
-        text-align: center;
-    }
+.btn-pink {
+    background: linear-gradient(90deg, var(--accent), #ff9bb3);
+    color: white;
+}
 
-    /* Overlay Countdown */
-    #overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 999;
-        flex-direction: column;
-        text-align: center;
-        font-family: Arial, sans-serif;
-    }
+.right-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
 
-    .overlay-img {
-        width: 180px;
-        margin-bottom: 20px;
-        animation: float 2s ease-in-out infinite;
-    }
+.photo-frame {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffeef2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
 
-    @keyframes float {
-        0% { transform: translateY(0px) }
-        50% { transform: translateY(-15px) }
-        100% { transform: translateY(0px) }
-    }
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease-in-out;
+}
 
-    #overlayCountdown {
-        font-size: 48px;
-        font-weight: bold;
-        color: var(--accent);
-        margin-top: 10px;
-    }
+.photo-frame img.slide-left {
+    transform: translateX(-100%);
+}
 
-    canvas.confetti {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 50;
-    }
+.photo-frame img.slide-right {
+    transform: translateX(100%);
+}
 
-    /* Initial Page Styles */
-    #initialPage {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        gap: 20px;
-        z-index: 998;
-        padding: 20px;
-        box-sizing: border-box;
-        animation: fadeIn 1s ease-out forwards;
-    }
+.made-text {
+    font-size: 28px;
+    font-weight: 800;
+    text-align: center;
+    background: linear-gradient(90deg, #ff5e7e, #ff9bb3, #c7a4ff, #ffd166);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 6s ease infinite, pulse 1.5s infinite;
+}
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
-    }
+@keyframes gradientFlow {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
 
-    #initialPage h2 {
-        color: #333;
-        font-size: clamp(24px, 5vw, 48px);
-    }
-    
-    .breathing-text {
-        animation: breathe 3s ease-in-out infinite;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    @keyframes breathe {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-    
-    .cake-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        transition: transform 0.3s ease, filter 0.3s ease;
-    }
-    
-    .cake-button:hover {
-        transform: scale(1.05);
-        filter: drop-shadow(0 0 10px var(--accent));
-    }
-    
-    .cake-button:active {
-        animation: pop 0.2s ease-out;
-    }
-    
-    @keyframes pop {
-        0% { transform: scale(1); }
-        50% { transform: scale(0.95); }
-        100% { transform: scale(1); }
-    }
-    
-    .cake-button img {
-        width: clamp(200px, 40vw, 350px);
-        height: auto;
-        border-radius: 50%;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        transition: transform 0.3s ease;
-    }
-    
-    .cake-button img {
-        object-fit: cover;
-        border-radius: 50%;
-    }
+@keyframes pulse {
+    0% { transform: scale(1) }
+    50% { transform: scale(1.12) }
+    100% { transform: scale(1) }
+}
 
-    /* --- Modal CSS --- */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.6);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.big-message {
+    margin-top: 12px;
+    background: #fff;
+    padding: 14px;
+    border-radius: 12px;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 20px;
+}
 
-    .modal-content {
-        background-color: white;
-        padding: 40px;
-        border-radius: 15px;
-        text-align: center;
-        width: 90%;
-        max-width: 500px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        transform: translateY(-20px);
-        opacity: 0;
-        animation: modalFadeIn 0.5s forwards;
-    }
+.footer {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+}
 
-    @keyframes modalFadeIn {
-        from { transform: translateY(-20px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
+/* Overlay Countdown */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    flex-direction: column;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
 
-    .modal-content h3 {
-        margin: 0;
-        font-size: clamp(20px, 4vw, 32px);
-        color: var(--accent);
-    }
+.overlay-img {
+    width: 180px;
+    margin-bottom: 20px;
+    animation: float 2s ease-in-out infinite;
+}
 
-    .modal-content p {
-        color: var(--muted);
-        margin-top: 15px;
-        font-size: 16px;
-    }
+@keyframes float {
+    0% { transform: translateY(0px) }
+    50% { transform: translateY(-15px) }
+    100% { transform: translateY(0px) }
+}
 
-    .modal-buttons {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-    }
+#overlayCountdown {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--accent);
+    margin-top: 10px;
+}
 
-    .btn-modal {
-        border: 0;
-        padding: 12px 24px;
-        border-radius: 999px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-    }
+canvas.confetti {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+}
 
-    .btn-modal:hover {
-        transform: scale(1.05);
-    }
+/* Initial Page Styles */
+#initialPage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+    z-index: 998;
+    padding: 20px;
+    box-sizing: border-box;
+    animation: fadeIn 1s ease-out forwards;
+}
 
-    .btn-close {
-        background-color: #f4f4f4;
-        color: #333;
-    }
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
 
-    .btn-music {
-        background: var(--accent);
-        color: white;
-    }
+#initialPage h2 {
+    color: #333;
+    font-size: clamp(24px, 5vw, 48px);
+}
 
-    /* Gift Modal Specific Styles */
-    #giftModal .modal-content {
-        padding: 30px;
-    }
+.breathing-text {
+    animation: breathe 3s ease-in-out infinite;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
 
-    #giftModal h3 {
-        color: #333;
-        margin-bottom: 20px;
-    }
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
 
-    #giftIcon {
-        width: clamp(150px, 30vw, 250px);
-        cursor: pointer;
-        transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
-        animation: bounce 2s infinite ease-in-out;
-    }
+.cake-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
 
-    #giftIcon:hover {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 10px var(--accent));
-    }
+.cake-button:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px var(--accent));
+}
 
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-    }
+.cake-button:active {
+    animation: pop 0.2s ease-out;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.cake-button img {
+    width: clamp(200px, 40vw, 350px);
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.cake-button img {
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* --- Modal CSS --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-20px);
+    opacity: 0;
+    animation: modalFadeIn 0.5s forwards;
+}
+
+@keyframes modalFadeIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content h3 {
+    margin: 0;
+    font-size: clamp(20px, 4vw, 32px);
+    color: var(--accent);
+}
+
+.modal-content p {
+    color: var(--muted);
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.modal-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-modal {
+    border: 0;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-modal:hover {
+    transform: scale(1.05);
+}
+
+.btn-close {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.btn-music {
+    background: var(--accent);
+    color: white;
+}
+
+/* Gift Modal Specific Styles */
+#giftModal .modal-content {
+    padding: 30px;
+}
+
+#giftModal h3 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#giftIcon {
+    width: clamp(150px, 30vw, 250px);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+#giftIcon:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px var(--accent));
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* New Modal Styles */
+#waitModal .modal-content {
+    animation: modalFadeIn 0.5s forwards;
+}
+
+#finalModal .modal-content {
+    animation: modalFadeIn 0.5s forwards;
+}
+
+#waitCountdown {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--accent);
+    margin-top: 10px;
+}
+
+#finalMessage {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.6;
+}
 </style>
 </head>
 <body>
@@ -434,9 +458,33 @@
 <div id="giftModal" class="modal" style="display: none;">
     <div class="modal-content">
         <h3>Silakan buka kadonya!</h3>
-        <img src="kadek/gift-icon.png" alt="Ikon Kado Ulang Tahun" id="giftIcon" />
+        <img src="kadek/kadoKadek.png" alt="Ikon Kado Ulang Tahun" id="giftIcon" />
     </div>
 </div>
+
+<div id="waitModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <!-- <h3>Sabar yaaa...</h3> -->
+        <p id="waitModalMessage" style="color: var(--muted);"></p>
+        <div id="waitCountdown">5</div>
+        <div class="modal-buttons" id="nextButtonContainer" style="display: none;">
+            <button class="btn-modal btn-music" id="btnNext">Lanjut</button>
+        </div>
+    </div>
+</div>
+
+<div id="finalModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmQxdDVxa2s3Z2g0ZmF1eGhjaTJuYTUxbGVpdnY5MWx5a2J6NnVybyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EbEphCw4wMYGBAYYO8/giphy.gif" alt="Animasi hadiah" width="150" style="margin-bottom: 20px;">
+        <div id="finalMessage"></div>
+        <button id="closeFinalModal" class="close-btn">&times;</button>
+    </div>
+</div>
+
+<audio id="background-music" loop>
+    <source src="kadek/musikUltah.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 <div id="overlay">
   <img src="https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif" alt="Animasi kotak kado bergerak" class="overlay-img">
@@ -446,10 +494,10 @@
 
 <div class="wrap" id="initialPage" style="display: none;">
     <div>
-        <h2 class="breathing-text">Silakan tekan kue ulang tahun ini!</h2>
         <button class="cake-button" id="btnCake">
-            <img src="kadek/kueUltah.jpg" alt="Gambar kue ulang tahun" />
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjU1aGljYTd1end1Mm9mN212M2NuMXo1bmljYWZta3JwNzM3bHZ1dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1cUyeJNKERjwvrS4Yc/giphy.gif" alt="Gambar kue ulang tahun" />
         </button>
+        <h3 class="breathing-text">Silakan tekan !!</h3>
     </div>
 </div>
 
@@ -462,7 +510,6 @@
       </div>
       <div class="message">
         <div><span class="typed" id="typed"></span></div>
-        <div class="hint">Tunggu hingga waktunya untuk membuka pesan spesial ✨</div>
       </div>
       <div class="controls">
         <button class="btn btn-pink" id="btnReveal" style="display: none;">Buka Pesan ❤️</button>
@@ -486,179 +533,192 @@
 </div>
 
 <script>
-    // JavaScript Code Below
-    const NAMA = "Kadek"; 
-    document.getElementById('nama').textContent = NAMA;
+const NAMA = "Kadek";
+// const revealDate = new Date(Date.now() + 5 * 1000);
 
-    const overlay = document.getElementById('overlay');
-    const mainContent = document.getElementById('mainContent');
-    const initialPage = document.getElementById('initialPage');
-    const btnCake = document.getElementById('btnCake');
-    const overlayCountdown = document.getElementById('overlayCountdown');
-    const btnReveal = document.getElementById('btnReveal');
-    const specialMessageEl = document.getElementById('specialMessage');
-    const photo = document.getElementById('photo');
+const revealDate = new Date(2025, 8, 9, 12, 0, 0);
 
-    // Modal elements
-    const giftModal = document.getElementById('giftModal');
-    const giftIcon = document.getElementById('giftIcon');
+const overlay = document.getElementById('overlay');
+const initialPage = document.getElementById('initialPage');
+const mainContent = document.getElementById('mainContent');
+const btnCake = document.getElementById('btnCake');
+const btnReveal = document.getElementById('btnReveal');
+const specialMessageEl = document.getElementById('specialMessage');
+const giftModal = document.getElementById('giftModal');
+const giftIcon = document.getElementById('giftIcon');
+const photo = document.getElementById('photo');
 
+const waitModal = document.getElementById('waitModal');
+const waitModalMessage = document.getElementById('waitModalMessage');
+const waitCountdownEl = document.getElementById('waitCountdown');
+const nextButtonContainer = document.getElementById('nextButtonContainer');
+const btnNext = document.getElementById('btnNext');
 
-    // --- Pengaturan Waktu Pengungkapan ---
-    // Untuk testing, kita atur 10 detik dari sekarang
- const revealDate = new Date(Date.UTC(2025, 8, 9, 5, 0, 0)); 
+const finalModal = document.getElementById('finalModal');
+const closeFinalModalBtn = document.getElementById('closeFinalModal');
+const finalMessageEl = document.getElementById('finalMessage');
 
-    let countdownInterval;
+// Dapatkan elemen audio
+const backgroundMusic = document.getElementById('background-music');
 
-    function updateCountdown() {
-        const now = new Date();
-        const distance = revealDate - now;
-
-        if (distance <= 0) {
-            overlay.style.display = "none";
-            initialPage.style.display = "flex";
-            clearInterval(countdownInterval);
-            return;
-        }
-
-        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((distance / (1000 * 60)) % 60);
-        const seconds = Math.floor((distance / 1000) % 60);
-
-        overlayCountdown.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+// Fungsi untuk memperbarui hitungan mundur
+function updateCountdown() {
+    const distance = revealDate - new Date();
+    if (distance <= 0) {
+        overlay.style.display = "none";
+        initialPage.style.display = "flex";
+        clearInterval(countdownInterval);
+        return;
     }
+    const parts = [
+        Math.floor((distance / (1000 * 60 * 60)) % 24),
+        Math.floor((distance / (1000 * 60)) % 60),
+        Math.floor((distance / 1000) % 60)
+    ];
+    document.getElementById('overlayCountdown').textContent = parts.map(p => String(p).padStart(2, '0')).join(':');
+}
 
-    countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
+let countdownInterval = setInterval(updateCountdown, 1000);
+updateCountdown();
 
-    // --- Tombol Kue Ulang Tahun ---
-    btnCake.addEventListener('click', () => {
-        initialPage.style.display = 'none';
-        mainContent.style.display = 'flex';
-        btnReveal.style.display = 'inline-block';
+// Event listener untuk tombol kue
+btnCake.addEventListener('click', () => {
+    initialPage.style.display = 'none';
+    mainContent.style.display = 'flex';
+    btnReveal.style.display = 'inline-block';
+    // Menampilkan pesan selamat datang
+    document.getElementById('nama').textContent = NAMA;
+});
+
+// Event listener untuk tombol buka pesan
+btnReveal.addEventListener('click', () => {
+    // Putar musik saat tombol ditekan
+    backgroundMusic.play().catch(error => {
+        console.error("Autoplay was prevented:", error);
     });
 
-    // --- Efek Ketik pada Pesan Spesial ---
-    const typedText = "🎁 Selamat ulang tahun, Kadek! Semoga di usiamu yang baru ini, level kesabaranmu naik drastis. Karena jujur saja, pacar kamu yang super gemas ini butuh banyak dimaklumi. Canda, Sayang! 😜";
-    const typeSpeed = 50; // Kecepatan ketik (ms per karakter)
-    const modalDelay = 5000; // Jeda 5 detik sebelum modal muncul (setelah ketik selesai)
-    let charIndex = 0;
+    btnReveal.style.display = 'none';
+    document.getElementById('revealArea').style.display = 'block';
 
-    function typeWriter() {
+    const typedText = "🎁 Selamat ulang tahun, Kadek! Semoga di usiamu yang baru ini, level kesabaranmu naik drastis. Karena jujur saja, pacar kamu yang super gemas ini butuh banyak dimaklumi. Canda, Sayang! 😜";
+    let charIndex = 0;
+    const typeWriter = () => {
         if (charIndex < typedText.length) {
-            specialMessageEl.textContent += typedText.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeWriter, typeSpeed);
+            specialMessageEl.textContent += typedText.charAt(charIndex++);
+            setTimeout(typeWriter, 50);
         } else {
-            // Animasi ketik selesai, hapus cursor
             specialMessageEl.classList.remove('typed-text');
-            // Beri jeda lalu tampilkan modal kado
             setTimeout(() => {
                 giftModal.style.display = 'flex';
-            }, modalDelay); 
+            }, 5000);
         }
-    }
+    };
+    typeWriter();
 
-    // --- Tombol Buka Pesan ---
-    btnReveal.addEventListener('click', () => {
-        specialMessageEl.parentElement.parentElement.style.display = 'block';
-        btnReveal.style.display = 'none';
-        
-        typeWriter();
-        startConfetti();
-        startSlideshow();
-    });
+    startConfetti();
+    startSlideshow();
+});
 
-    // --- Tombol Klik Kado (di dalam giftModal) ---
-    giftIcon.addEventListener('click', () => {
-        giftModal.style.display = 'none';
-        // Di sini Anda bisa menambahkan fungsi lain setelah kado dibuka,
-        // misalnya memutar musik atau menampilkan pesan terakhir.
-        // Contoh:
-        // alert("Surprise! Kadomu adalah sebuah pelukan hangat! 🤗");
-        // playBirthdaySong();
-    });
+// Event listener untuk ikon kado
+giftIcon.addEventListener('click', () => {
+    giftModal.style.display = 'none';
+    waitModal.style.display = 'flex';
+    startWaitCountdown();
+});
 
-    // --- Slideshow Foto dengan Transisi Geser ---
-    const photos = ["kadek/01.jpg", "kadek/02.jpg", "kadek/03.jpg", "kadek/04.jpg"]; 
-    let slideIndex = 0;
-    let slideInterval = null;
+// Event listener untuk tombol 'Lanjut'
+btnNext.addEventListener('click', () => {
+    waitModal.style.display = 'none';
+    finalModal.style.display = 'flex';
+    finalMessageEl.textContent = "Kado fisik lagi OTW via ekspedisi cinta, tapi kado yang paling penting, yaitu hatiku, sudah sampai duluan. Jangan dikembalikan ya! 😉";
+});
 
-    function startSlideshow() {
-        slideInterval = setInterval(() => {
-            const direction = Math.random() > 0.5 ? 'slide-left' : 'slide-right';
-            
-            photo.classList.add(direction);
+// Event listener untuk tombol tutup
+closeFinalModalBtn.addEventListener('click', () => {
+    finalModal.style.display = 'none';
+});
 
-            setTimeout(() => {
-                slideIndex = (slideIndex + 1) % photos.length;
-                photo.src = photos[slideIndex];
-                photo.classList.remove(direction);
-            }, 700);
-        }, 3000);
-    }
+// Fungsi untuk hitungan mundur di modal baru
+function startWaitCountdown() {
+    let count = 5;
+    waitCountdownEl.textContent = count;
+    nextButtonContainer.style.display = 'none';
+    waitModalMessage.textContent = "";
 
-    // --- Confetti Animation with requestAnimationFrame ---
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    let W = canvas.width = window.innerWidth;
-    let H = canvas.height = window.innerHeight;
-    window.addEventListener('resize', () => {
-        W = canvas.width = window.innerWidth;
-        H = canvas.height = window.innerHeight;
-    });
+    const waitInterval = setInterval(() => {
+        count--;
+        if (count > 0) {
+            waitCountdownEl.textContent = count;
+        } else {
+            clearInterval(waitInterval);
+            waitCountdownEl.textContent = "🥳";
+            waitModalMessage.textContent = "Cieee yang penasaran banget, tunggu sebentar lagi ya! 😉";
+            nextButtonContainer.style.display = 'flex';
+        }
+    }, 1000);
+}
 
-    function random(min, max) { return Math.random() * (max - min) + min; }
+// Slideshow foto
+const photos = ["kadek/01.jpg", "kadek/02.jpg", "kadek/03.jpg", "kadek/04.jpg"];
+let slideIndex = 0;
+function startSlideshow() {
+    setInterval(() => {
+        photo.classList.add(Math.random() > 0.5 ? 'slide-left' : 'slide-right');
+        setTimeout(() => {
+            photo.src = photos[++slideIndex % photos.length];
+            photo.classList.remove('slide-left', 'slide-right');
+        }, 700);
+    }, 3000);
+}
 
-    function Confetti() {
-        this.x = random(0, W);
-        this.y = random(-H, 0);
-        this.r = random(6, 12);
-        this.d = random(10, 30);
-        this.tilt = random(-10, 10);
-        this.tiltAngleInc = random(0.05, 0.12);
-        this.tiltAngle = 0;
-        this.color = ["#ff5e7e", "#ffd166", "#8ad1c2", "#ff9bb3", "#c7a4ff"][Math.floor(random(0, 5))];
-    }
+// Efek Confetti
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 
-    Confetti.prototype.draw = function() {
-        ctx.beginPath();
-        ctx.fillStyle = this.color;
-        ctx.moveTo(this.x + this.tilt, this.y);
-        ctx.lineTo(this.x + this.tilt + this.r, this.y + this.r / 2);
-        ctx.lineTo(this.x + this.tilt, this.y + this.r);
-        ctx.lineTo(this.x + this.tilt - this.r, this.y + this.r / 2);
-        ctx.closePath();
-        ctx.fill();
-    }
+function Confetti() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * -canvas.height;
+    this.r = Math.random() * 6 + 6;
+    this.d = Math.random() * 20 + 10;
+    this.tilt = Math.random() * 20 - 10;
+    this.tiltAngle = 0;
+    this.tiltAngleInc = Math.random() * 0.07 + 0.05;
+    this.color = ["#ff5e7e", "#ffd166", "#8ad1c2", "#ff9bb3", "#c7a4ff"][Math.floor(Math.random() * 5)];
+}
 
-    let confetti = [];
-    function initConfetti(n = 120) {
-        confetti = [];
-        for (let i = 0; i < n; i++) confetti.push(new Confetti());
-    }
-
-    function updateConfetti() {
-        ctx.clearRect(0, 0, W, H);
-        for (let i = 0; i < confetti.length; i++) {
-            let p = confetti[i];
+let confettis = [];
+function startConfetti() {
+    confettis = Array.from({ length: 120 }, () => new Confetti());
+    const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confettis.forEach(p => {
             p.tiltAngle += p.tiltAngleInc;
             p.y += (Math.cos(p.d) + 3 + p.r / 2) * 0.6;
             p.tilt = Math.sin(p.tiltAngle) * 15;
-            if (p.y > H + 20) {
-                confetti[i] = new Confetti();
+            if (p.y > canvas.height + 20) {
+                p.y = Math.random() * -canvas.height;
+                p.x = Math.random() * canvas.width;
             }
-            confetti[i].draw();
-        }
-        requestAnimationFrame(updateConfetti);
-    }
-
-    let confettiAnim = null;
-    function startConfetti() {
-        initConfetti();
-        if (confettiAnim) cancelAnimationFrame(confettiAnim);
-        confettiAnim = requestAnimationFrame(updateConfetti);
-    }
+            // Menggambar confetti
+            ctx.beginPath();
+            ctx.fillStyle = p.color;
+            ctx.moveTo(p.x + p.tilt, p.y);
+            ctx.lineTo(p.x + p.tilt + p.r, p.y + p.r / 2);
+            ctx.lineTo(p.x + p.tilt, p.y + p.r);
+            ctx.lineTo(p.x + p.tilt - p.r, p.y + p.r / 2);
+            ctx.closePath();
+            ctx.fill();
+        });
+        requestAnimationFrame(animate);
+    };
+    animate();
+}
 </script>
 </body>
 </html>
